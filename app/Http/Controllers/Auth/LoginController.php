@@ -54,19 +54,20 @@ class LoginController extends Controller
        ]);
    }
 
-   protected function sendFailedLoginResponse() 
-   {
-       $user = $this->guard()->user();
-       if($user instanceOf MustVerifyEmail && ! $user->hasVerifiedEmail())
-       {
+   protected function sendFailedLoginResponse()
+    {
+        $user = $this->guard()->user();
+
+        if($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()){
             return response()->json(["errors" => [
-                "verification" => "You need  to verify your email account"
-            ]]);
-            }
+                "emailNotVerified" => "You need to verify your email account"
+            ]], 422);
+        }
+
         throw ValidationException::withMessages([
             $this->username() => "Invalid credentials"
         ]);
-   }
+    }
 
    public function logout()
    {
