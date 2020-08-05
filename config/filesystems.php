@@ -69,7 +69,7 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
+            //'endpoint' => env('AWS_ENDPOINT'),
         ],
 
     ],
@@ -85,8 +85,8 @@ return [
     |
     */
 
-    'links' => [
+    /* 'links' => [
         public_path('storage') => storage_path('app/public'),
-    ],
+    ], */
 
 ];

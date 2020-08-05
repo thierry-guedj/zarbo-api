@@ -10,6 +10,7 @@ Route::get('me', 'User\MeController@getMe');
 Route::get('designs', 'Designs\DesignController@index');
 Route::get('designs/{id}', 'Designs\DesignController@findDesign');
 Route::get('designs/slug/{slug}', 'Designs\DesignController@findBySlug');
+Route::get('designs/{tag}/tag', 'Designs\DesignController@findByTagName');
 
 // Get users
 Route::get('users', 'User\UserController@index');

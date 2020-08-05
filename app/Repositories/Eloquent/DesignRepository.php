@@ -81,7 +81,26 @@ class DesignRepository extends BaseRepository implements IDesign
             $query->latest();
         }
 
-        return $query->get();
+        return $query->with('user')->get();
+    }
+
+    public function fetchByTagName($tag) 
+    { 
+        // You can use the scope that comes with the EloquentTaggable package:
+        // $designs = $this->model->withAllTags($tag)->get();
+     
+        // OR you can write your own query like this:
+        $designs = $this->model->whereHas('tags', function($q) use ($tag){ $q->where('name', $tag); })->get();
+     
+        // Then return the results of the search
+        return $designs;
+    }
+
+    public function fetchByTags(array $tags)
+    {
+         $designs = $this->model->whereHas('tags', function($q) use ($tags){
+                         $q->whereIn('name', $tags);
+                    });
     }
 
 }

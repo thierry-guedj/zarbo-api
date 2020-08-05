@@ -14,6 +14,7 @@ use App\Repositories\Eloquent\Criteria\{
     IsLive,
     LatestFirst,
     ForUser,
+    ForTag
 };
 
 class DesignController extends Controller
@@ -40,7 +41,10 @@ class DesignController extends Controller
 
     public function findDesign($id)
     {
-        $design = $this->designs->find($id);
+        $design = $this->designs->withCriteria([
+            new IsLive(), 
+            new EagerLoad(['user', 'comments'])
+            ])->find($id);
         return new DesignResource($design);
     }
 
@@ -144,5 +148,15 @@ class DesignController extends Controller
 
         return new DesignResource($design);
     }
-
+    public function findByTagName($tag, Request $request)
+    {
+        $designs = $this->designs->withCriteria([ new ForTag($tag)])->search($request);
+        return DesignResource::collection($designs);
+       /*  $designs = $this->designs->withCriteria([
+            new IsLive(), 
+            new EagerLoad(['user', 'comments']),
+            new ForTag($tag),
+            ])->fetchByTagName('tag', $tag);
+        return DesignResource::collection($designs);   */      
+    }
 }

@@ -26,6 +26,7 @@ class UploadImage implements ShouldQueue
     public function __construct(Design $design)
     {
         $this->design = $design;
+        
     }
 
     /**
@@ -35,10 +36,11 @@ class UploadImage implements ShouldQueue
      */
     public function handle()
     {
+        \Log::error("coucou upload image");
         $disk = $this->design->disk;
         $filename = $this->design->image;
         $original_file = storage_path() . '/uploads/original/'. $filename;
-
+        
         try{
             // create the Large Image and save to tmp disk
             Image::make($original_file)
@@ -53,7 +55,7 @@ class UploadImage implements ShouldQueue
                     $constraint->aspectRatio();
                 })
                 ->save($thumbnail = storage_path('uploads/thumbnail/'. $filename));
-            
+                
             // store images to permanent disk
             // original image
             if(Storage::disk($disk)
@@ -71,8 +73,9 @@ class UploadImage implements ShouldQueue
             if(Storage::disk($disk)
                 ->put('uploads/designs/thumbnail/'.$filename, fopen($thumbnail, 'r+'))){
                     File::delete($thumbnail);
+                    \Log::error("coucou2");
                 }
-            
+                
             // Update the database record with success flag
             $this->design->update([
                 'upload_successful' => true
