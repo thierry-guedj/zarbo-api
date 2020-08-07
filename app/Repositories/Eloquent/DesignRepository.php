@@ -72,6 +72,16 @@ class DesignRepository extends BaseRepository implements IDesign
             });
         }
 
+         // Returns only designs assigned to tag name
+         if($request->tag){
+            $query->withAllTags($request->tag);
+        }
+
+         // Returns only designs assigned to user id
+         if($request->userId){
+            $query->where('user_id', $request->userId);
+        }
+
         // Order the query by likes or latest first
         if($request->orderBy == 'likes'){
             $query->withCount('likes')   // likes_count
@@ -87,11 +97,8 @@ class DesignRepository extends BaseRepository implements IDesign
     public function fetchByTagName($tag) 
     { 
         // You can use the scope that comes with the EloquentTaggable package:
-        // $designs = $this->model->withAllTags($tag)->get();
-     
-        // OR you can write your own query like this:
-        $designs = $this->model->whereHas('tags', function($q) use ($tag){ $q->where('name', $tag); })->get();
-     
+        $designs = $this->model->withAllTags($tag)->with('user')->get();
+
         // Then return the results of the search
         return $designs;
     }

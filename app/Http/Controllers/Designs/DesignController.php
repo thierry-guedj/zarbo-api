@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DesignResource;
 use App\Repositories\Contracts\IDesign;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use App\Repositories\Eloquent\Criteria\{
     EagerLoad,
     IsLive,
@@ -140,6 +141,21 @@ class DesignController extends Controller
                         ->findWhere('user_id', $userId);
         return DesignResource::collection($designs);
     }
+    public function getForUserFront($userId)
+    {
+        $designs = $this->designs
+                        ->withCriteria([new isLive()])
+                        ->findWhere('user_id', $userId);
+        return DesignResource::collection($designs);
+    }
+    public function getForUserExc($userId)
+    {
+        $designs = $this->designs
+                        //->withCriteria([new isLive()])
+                        ->whereNotIn('user_id', $userId);
+        return DesignResource::collection($designs);
+    }
+ 
     public function userOwnsDesign($id)
     {
         $design = $this->designs->withCriteria(
@@ -148,9 +164,9 @@ class DesignController extends Controller
 
         return new DesignResource($design);
     }
-    public function findByTagName($tag, Request $request)
+    public function searchByTagName($tag)
     {
-        $designs = $this->designs->withCriteria([ new ForTag($tag)])->search($request);
+        $designs = $this->designs->fetchByTagName($tag);
         return DesignResource::collection($designs);
        /*  $designs = $this->designs->withCriteria([
             new IsLive(), 

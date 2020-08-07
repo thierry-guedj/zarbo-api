@@ -14,8 +14,9 @@ class ForTag implements ICriterion
     }
     public function apply($model)
     {
-        return $model->whereHas('tags', function($q) use ($this->tag){$q->where('name', $this->tag); });
+        // return $model->whereHas('tags', function($q) use ($this->tag){$q->where('name', $this->tag) });
         // $repository->fetchByTagName($this->tag);
+        return $model->withAllTags($this->tag);
         
     }
 }

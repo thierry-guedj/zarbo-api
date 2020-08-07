@@ -36,12 +36,19 @@ class UploadImage implements ShouldQueue
      */
     public function handle()
     {
-        \Log::error("coucou upload image");
+        
         $disk = $this->design->disk;
         $filename = $this->design->image;
         $original_file = storage_path() . '/uploads/original/'. $filename;
-        
+        \Log::error("coucou upload image");
         try{
+             // create the Extra Large Image and save to tmp disk
+             Image::make($original_file)
+             ->fit(2560, 1440, function($constraint){
+                 $constraint->aspectRatio();
+             })
+             ->save($extralarge = storage_path('uploads/extralarge/'. $filename));
+
             // create the Large Image and save to tmp disk
             Image::make($original_file)
                 ->fit(800, 600, function($constraint){
@@ -55,6 +62,13 @@ class UploadImage implements ShouldQueue
                     $constraint->aspectRatio();
                 })
                 ->save($thumbnail = storage_path('uploads/thumbnail/'. $filename));
+
+            // Create the mini thumbnail image
+            Image::make($original_file)
+                ->fit(100, 100, function($constraint){
+                    $constraint->aspectRatio();
+                })
+                ->save($minithumbnail = storage_path('uploads/minithumbnail/'. $filename));
                 
             // store images to permanent disk
             // original image
@@ -63,6 +77,11 @@ class UploadImage implements ShouldQueue
                     File::delete($original_file);
                 }
 
+                // extralarge images
+            if(Storage::disk($disk)
+            ->put('uploads/designs/extralarge/'.$filename, fopen($extralarge, 'r+'))){
+                File::delete($extralarge);
+            }
             // large images
             if(Storage::disk($disk)
                 ->put('uploads/designs/large/'.$filename, fopen($large, 'r+'))){
@@ -73,9 +92,15 @@ class UploadImage implements ShouldQueue
             if(Storage::disk($disk)
                 ->put('uploads/designs/thumbnail/'.$filename, fopen($thumbnail, 'r+'))){
                     File::delete($thumbnail);
-                    \Log::error("coucou2");
+                 
                 }
-                
+            
+            // minithumbnail images
+            if(Storage::disk($disk)
+                ->put('uploads/designs/minithumbnail/'.$filename, fopen($minithumbnail, 'r+'))){
+                    File::delete($minithumbnail);
+                 
+                }
             // Update the database record with success flag
             $this->design->update([
                 'upload_successful' => true

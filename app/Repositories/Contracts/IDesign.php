@@ -11,6 +11,7 @@ interface IDesign
     public function like($id);
     public function isLikedByUser($id);
     public function search(Request $request);
-    public function fetchByTagName($tag);
-    public function fetchByTags(array $tags);
+    // public function searchByTagName($tag, Request $request);
+    /* public function fetchByTagName($tag);
+    public function fetchByTags(array $tags); */
 }

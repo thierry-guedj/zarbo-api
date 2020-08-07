@@ -21,7 +21,7 @@ class UploadController extends Controller
         // validate the request
         
         $this->validate($request, [
-            'image' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:2048']
+            'image' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:10000']
         ]); 
 
         // get the image

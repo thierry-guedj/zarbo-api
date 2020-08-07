@@ -10,7 +10,6 @@ Route::get('me', 'User\MeController@getMe');
 Route::get('designs', 'Designs\DesignController@index');
 Route::get('designs/{id}', 'Designs\DesignController@findDesign');
 Route::get('designs/slug/{slug}', 'Designs\DesignController@findBySlug');
-Route::get('designs/{tag}/tag', 'Designs\DesignController@findByTagName');
 
 // Get users
 Route::get('users', 'User\UserController@index');
@@ -24,6 +23,8 @@ Route::get('teams/{id}/designs', 'Designs\DesignController@getForTeam');
 // Search Designs
 Route::get('search/designs', 'Designs\DesignController@search');
 Route::get('search/designers', 'User\UserController@search');
+Route::get('search/designs/{tag}/tag', 'Designs\DesignController@searchByTagName');
+Route::get('search/designs/{user}/user', 'Designs\DesignController@getForUserFront');
 
 
 // Route group for authenticated users only
