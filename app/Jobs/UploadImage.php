@@ -79,7 +79,7 @@ class UploadImage implements ShouldQueue
 
                 // extralarge images
             if(Storage::disk($disk)
-            ->put('uploads/designs/extralarge/'.$filename, fopen($extralarge, 'r+'))){
+                ->put('uploads/designs/extralarge/'.$filename, fopen($extralarge, 'r+'))){
                 File::delete($extralarge);
             }
             // large images

@@ -56,8 +56,7 @@ class UserRepository extends BaseRepository implements IUser
         } else{
             $query->oldest();
         }
-
-        return $query->get();
+        return $query->with('designs')->paginate(12, ['*'], 'page', $request->page);
 
     }
 }

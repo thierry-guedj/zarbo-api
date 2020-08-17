@@ -50,8 +50,10 @@ class Design extends Model
     {
         
         return [
+            'minithumbnail' => $this->getImagePath('minithumbnail'),
             'thumbnail' => $this->getImagePath('thumbnail'),
             'large' => $this->getImagePath('large'),
+            'extralarge' => $this->getImagePath('extralarge'),
             'original' => $this->getImagePath('original'),
         ];
     }

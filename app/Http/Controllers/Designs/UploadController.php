@@ -19,7 +19,7 @@ class UploadController extends Controller
     public function upload(Request $request)
     {
         // validate the request
-        
+        \Log::error("coucou upload controller");
         $this->validate($request, [
             'image' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:10000']
         ]); 
@@ -27,7 +27,7 @@ class UploadController extends Controller
         // get the image
         $image = $request->file('image');
         $image_path = $image->getPathName();
-
+        
 
         // get the original file name and replace any spaces with _
         // Business Cards.png = timestamp()_business_cards.png

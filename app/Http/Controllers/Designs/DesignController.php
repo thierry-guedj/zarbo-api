@@ -15,7 +15,6 @@ use App\Repositories\Eloquent\Criteria\{
     IsLive,
     LatestFirst,
     ForUser,
-    ForTag
 };
 
 class DesignController extends Controller
@@ -76,6 +75,17 @@ class DesignController extends Controller
 
         return new DesignResource($design);
     }
+    public function updateIsLive(Request $request, $id)
+    {
+        $design = $this->designs->find($id);
+        $this->authorize('update', $design);
+
+        $design = $this->designs->update($id, [
+            'is_live' => ! $design->upload_successful ? 0 : $request->is_live
+        ]);
+
+        return new DesignResource($design);
+    }
 
     public function destroy($id)
     {
@@ -83,7 +93,7 @@ class DesignController extends Controller
         $this->authorize('delete', $design);
 
         // Delete the files associated to the record
-        foreach(['original', 'large', 'thumbnail'] as $size){
+        foreach(['original', 'large', 'thumbnail', 'extralarge', 'minithumbnail'] as $size){
             // Check if the file exists in the database
             if(Storage::disk($design->disk)->exists("uploads/designs/{$size}/".$design->image)){
                 Storage::disk($design->disk)->delete("uploads/designs/{$size}/".$design->image);
@@ -104,12 +114,19 @@ class DesignController extends Controller
             'total' => $total
         ], 200);
     }
-
+    public function totalLikes($id)
+    {
+        $total = $this->designs->totalLikes($id);
+        return response()->json([
+            'total' => $total
+        ], 200);
+    }
     public function checkIfUserHasLiked($designId)
     {
         $isLiked = $this->designs->isLikedByUser($designId);
         return response()->json(['liked' => $isLiked], 200);
     }
+ 
 
     public function search(Request $request)
     {
@@ -148,11 +165,12 @@ class DesignController extends Controller
                         ->findWhere('user_id', $userId);
         return DesignResource::collection($designs);
     }
-    public function getForUserExc($userId)
+    public function getForUserWhereNotIn($userId, $designId)
     {
         $designs = $this->designs
-                        //->withCriteria([new isLive()])
-                        ->whereNotIn('user_id', $userId);
+                        ->withCriteria([new isLive()])
+                        ->findWhere('user_id', $userId)
+                        ->whereNotIn('id', $designId)->paginate(6);
         return DesignResource::collection($designs);
     }
  
@@ -174,5 +192,26 @@ class DesignController extends Controller
             new ForTag($tag),
             ])->fetchByTagName('tag', $tag);
         return DesignResource::collection($designs);   */      
+    }
+    public function searchByTags(array $tags)
+    {
+        $designs = $this->designs->fetchByTags($tags);
+        return DesignResource::collection($designs);
+       /*  $designs = $this->designs->withCriteria([
+            new IsLive(), 
+            new EagerLoad(['user', 'comments']),
+            new ForTag($tag),
+            ])->fetchByTagName('tag', $tag);
+        return DesignResource::collection($designs);   */      
+    }
+    public function lastDesigns()
+    {
+        $designs = $this->designs->withCriteria([
+            new LatestFirst(),
+            new IsLive(),
+            new EagerLoad(['user', 'comments'])
+        ])->paginate(12);
+        return DesignResource::collection($designs);
+
     }
 }

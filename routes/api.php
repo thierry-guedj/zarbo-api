@@ -12,7 +12,7 @@ Route::get('designs/{id}', 'Designs\DesignController@findDesign');
 Route::get('designs/slug/{slug}', 'Designs\DesignController@findBySlug');
 
 // Get users
-Route::get('users', 'User\UserController@index');
+Route::get('users', 'User\UserController@search');
 Route::get('user/{username}', 'User\UserController@findByUsername');
 Route::get('users/{id}/designs', 'Designs\DesignController@getForUser');
 
@@ -24,8 +24,13 @@ Route::get('teams/{id}/designs', 'Designs\DesignController@getForTeam');
 Route::get('search/designs', 'Designs\DesignController@search');
 Route::get('search/designers', 'User\UserController@search');
 Route::get('search/designs/{tag}/tag', 'Designs\DesignController@searchByTagName');
+Route::get('search/designs/tags/{tags}', 'Designs\DesignController@searchByTags');
 Route::get('search/designs/{user}/user', 'Designs\DesignController@getForUserFront');
+Route::get('search/designs/{user}/usermore/{id}', 'Designs\DesignController@getForUserWhereNotIn');
+Route::get('/designs/{id}/totalLikes', 'Designs\DesignController@totalLikes');
 
+// Get Likes 
+Route::get('search/designs/last', 'Designs\DesignController@lastDesigns');
 
 // Route group for authenticated users only
 Route::group(['middleware'=>['auth:api']], function(){
@@ -37,8 +42,10 @@ Route::group(['middleware'=>['auth:api']], function(){
     // Upload designs
     Route::post('designs', 'Designs\UploadController@upload');
     Route::put('designs/{id}', 'Designs\DesignController@update');
+    Route::put('designs/{id}/updateIsLive', 'Designs\DesignController@updateIsLive');
     Route::get('designs/{id}/byUser', 'Designs\DesignController@userOwnsDesign');
     Route::delete('designs/{id}', 'Designs\DesignController@destroy');
+
     
     // Likes and Unlikes
     Route::post('designs/{id}/like', 'Designs\DesignController@like');

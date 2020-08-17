@@ -42,12 +42,17 @@ class DesignRepository extends BaseRepository implements IDesign
 
         return $design->likes()->count();
     }
+    public function totalLikes($id)
+    {
+        $design = $this->model->findOrFail($id);
+        return $design->likes()->count();
+    }
     public function isLikedByUser($id)
     {
         $design = $this->model->findOrFail($id);
         return $design->isLikedByUser(auth()->id());
     }
-
+ 
     public function search(Request $request)
     {
         $query = (new $this->model)->newQuery();
@@ -77,11 +82,18 @@ class DesignRepository extends BaseRepository implements IDesign
             $query->withAllTags($request->tag);
         }
 
+        if($request->tags){
+            $query->withAnyTags($request->tags);
+        }
+
          // Returns only designs assigned to user id
          if($request->userId){
             $query->where('user_id', $request->userId);
         }
-
+ // Returns only designs whereNotIn id
+ if($request->whereNotIn){
+    $query->whereNotIn('id', $request->whereNotIn);
+}
         // Order the query by likes or latest first
         if($request->orderBy == 'likes'){
             $query->withCount('likes')   // likes_count
@@ -91,7 +103,7 @@ class DesignRepository extends BaseRepository implements IDesign
             $query->latest();
         }
 
-        return $query->with('user')->get();
+        return $query->with('user')->paginate(12, ['*'], 'page', $request->page);
     }
 
     public function fetchByTagName($tag) 
@@ -105,9 +117,11 @@ class DesignRepository extends BaseRepository implements IDesign
 
     public function fetchByTags(array $tags)
     {
-         $designs = $this->model->whereHas('tags', function($q) use ($tags){
+         /* $designs = $this->model->whereHas('tags', function($q) use ($tags){
                          $q->whereIn('name', $tags);
-                    });
+                    }); */
+
+                    $designs = $this->model->withAnyTags($tags)->with('user')->get();
     }
 
 }
