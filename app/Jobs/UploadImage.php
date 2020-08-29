@@ -51,7 +51,7 @@ class UploadImage implements ShouldQueue
 
             // create the Large Image and save to tmp disk
             Image::make($original_file)
-                ->resize(1600, null, function($constraint){
+                ->resize(1920, null, function($constraint){
                     $constraint->aspectRatio();
                 })
                 ->save($large = storage_path('uploads/large/'. $filename));
