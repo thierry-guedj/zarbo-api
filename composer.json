@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "spatie/laravel-backup": "^6.11",
         "tymon/jwt-auth": "^1.0.0"
     },
     "require-dev": {

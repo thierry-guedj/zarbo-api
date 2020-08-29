@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'ZarboAPI'),
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
 
+        Spatie\Backup\BackupServiceProvider::class,
     ],
 
     /*
