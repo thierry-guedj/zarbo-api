@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
 
+        Spatie\Backup\BackupServiceProvider::class,
     ],
 
     /*
