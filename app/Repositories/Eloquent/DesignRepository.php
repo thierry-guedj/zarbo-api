@@ -52,6 +52,12 @@ class DesignRepository extends BaseRepository implements IDesign
         $design = $this->model->findOrFail($id);
         return $design->isLikedByUser(auth()->id());
     }
+
+    public function uploadIsSuccessful($id)
+    {
+        $design = $this->model->findOrFail($id);
+        return $design->upload_successful;
+    }
  
     public function search(Request $request)
     {
@@ -103,7 +109,7 @@ class DesignRepository extends BaseRepository implements IDesign
             $query->latest();
         }
 
-        return $query->with('user')->paginate(18, ['*'], 'page', $request->page);
+        return $query->with('user')->paginate(12, ['*'], 'page', $request->page);
     }
 
     public function fetchByTagName($tag) 

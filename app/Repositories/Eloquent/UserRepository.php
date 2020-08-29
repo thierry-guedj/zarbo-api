@@ -26,6 +26,9 @@ class UserRepository extends BaseRepository implements IUser
     {
         $query = (new $this->model)->newQuery();
 
+        // Verified only
+        $query->whereNotNull('email_verified_at');
+
         // Only designers who have designs
         if($request->has_designs){
             $query->has('designs');
@@ -46,6 +49,14 @@ class UserRepository extends BaseRepository implements IUser
             $point = new Point($lat, $lng);
             $unit == 'km' ? $dist *= 1000 : $dist *= 1609.34;
             $query->distanceSphereExcludingSelf('location', $point, $dist);
+        }
+        // Search name, username and tagline for provided string
+        if($request->q){
+            $query->where(function($q) use ($request){
+                $q->where('name', 'like', '%'.$request->q.'%')
+                    ->orWhere('username', 'like', '%'.$request->q.'%')
+                    ->orWhere('tagline', 'like', '%'.$request->q.'%');
+            });
         }
 
         // Order the results

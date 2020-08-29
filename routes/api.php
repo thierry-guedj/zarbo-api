@@ -44,6 +44,7 @@ Route::group(['middleware'=>['auth:api']], function(){
     Route::put('designs/{id}', 'Designs\DesignController@update');
     Route::put('designs/{id}/updateIsLive', 'Designs\DesignController@updateIsLive');
     Route::get('designs/{id}/byUser', 'Designs\DesignController@userOwnsDesign');
+    Route::get('designs/{id}/uploadIsSuccessful', 'Designs\DesignController@uploadIsSuccessful');
     Route::delete('designs/{id}', 'Designs\DesignController@destroy');
 
     

@@ -81,7 +81,7 @@ class DesignController extends Controller
         $this->authorize('update', $design);
 
         $design = $this->designs->update($id, [
-            'is_live' => ! $design->upload_successful ? 0 : $request->is_live
+            'is_live' => ! $design->upload_successful ? 0 : $request->isLive
         ]);
 
         return new DesignResource($design);
@@ -182,6 +182,12 @@ class DesignController extends Controller
 
         return new DesignResource($design);
     }
+
+    public function uploadIsSuccessful($designId)
+    {       
+        return $this->design->uploadIsSuccessful($designId);
+    }
+
     public function searchByTagName($tag)
     {
         $designs = $this->designs->fetchByTagName($tag);
