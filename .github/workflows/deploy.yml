@@ -25,3 +25,4 @@ jobs:
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
           sudo systemctl start php7.4-fpm
           sudo systemctl start nginx
+          pm2 restart laravel-worker
