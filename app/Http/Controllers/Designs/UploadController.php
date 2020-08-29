@@ -21,11 +21,11 @@ class UploadController extends Controller
         // validate the request
         \Log::error("coucou upload controller");
         $this->validate($request, [
-            'image' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:10000']
+            'slim_output_0' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:10000']
         ]); 
 
         // get the image
-        $image = $request->file('image');
+        $image = $request->file('slim_output_0');
         $image_path = $image->getPathName();
         
 
