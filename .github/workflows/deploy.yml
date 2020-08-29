@@ -1,0 +1,29 @@
+name: Laravel
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  laravel-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy Zarbo UI
+      uses: appleboy/ssh-action@v0.1.3
+      with:
+        username: ${{ secrets.ZARBO_SSH_USER }}
+        host: ${{ secrets.ZARBO_HOST }}
+        key: ${{ secrets.ZARBO_SSH_KEY }}
+        script: |
+          cd zarbo-api
+          git fetch
+          sudo systemctl stop nginx
+          sudo systemctl stop php7.4-fpm
+          git reset --hard origin/master          
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          sudo systemctl start php7.4-fpm
+          sudo systemctl start nginx
