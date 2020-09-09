@@ -38,4 +38,9 @@ class UserController extends Controller
         $user = $this->users->findWhereFirst('username', $username);
         return new UserResource($user);
     }
+    public function findById($id)
+    {
+        $user = $this->users->findWhereFirst('id', $id);
+        return new UserResource($user);
+    }
 }
