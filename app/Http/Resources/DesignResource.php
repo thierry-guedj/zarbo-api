@@ -26,6 +26,7 @@ class DesignResource extends JsonResource
                 'tags' => $this->tagArray,
                 'normalized' => $this->tagArrayNormalized,
             ],
+            'upload_successful' => $this->upload_successful,
             'created_at_dates' => [
                 'created_at_human' => $this->created_at->diffForHumans(),
                 'created_at' => $this->created_at
