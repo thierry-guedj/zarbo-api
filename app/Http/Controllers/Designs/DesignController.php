@@ -53,14 +53,14 @@ class DesignController extends Controller
         $design = $this->designs->find($id);
         $this->authorize('update', $design);
 
-        $this->validate($request, [
-            /* 'title' => ['required', 'unique:designs,title,'. $id],
+      /*   $this->validate($request, [
+            'title' => ['required', 'unique:designs,title,'. $id],
             'description' => ['required', 'string', 'min:6', 'max:450'],
-            'tags' => ['required'], */
+            'tags' => ['required'],
             'title' => ['required'],
             'description' => ['string', 'min:6', 'max:450'],            
             'team' => ['required_if:assign_to_team,true']
-        ]);
+        ]); */
 
         $design = $this->designs->update($id, [
             'team_id' => $request->team,
