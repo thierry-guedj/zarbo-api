@@ -67,7 +67,7 @@ class DesignController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'slug' => Str::slug($request->title),
-            'is_live' => ! $design->upload_successful ? false : $request->is_live
+            'is_live' => $request->is_live
         ]);
 
         // Apply tags
