@@ -45,6 +45,11 @@ class UploadController extends Controller
         $design = $this->designs->create([
             'user_id' => auth()->id(),
             'image' => $filename,
+            'title' =>$request->title,
+            'description' =>$request->description,
+            'tags' =>$request->tags,
+            'is_live' =>$request->is_live,
+            'slug' =>$request->slug,
             'disk' => config('site.upload_disk')
         ]);
         \Log::error($design);
