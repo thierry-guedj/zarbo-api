@@ -73,31 +73,31 @@ class UploadImage implements ShouldQueue
             // store images to permanent disk
             // original image
             if(Storage::disk($disk)
-                ->put('uploads/designs/original/'.$filename, fopen($original_file, 'r+'))){
+                ->put('uploads/original/'.$filename, fopen($original_file, 'r+'))){
                     File::delete($original_file);
                 }
 
                 // extralarge images
             if(Storage::disk($disk)
-                ->put('uploads/designs/extralarge/'.$filename, fopen($extralarge, 'r+'))){
+                ->put('uploads/extralarge/'.$filename, fopen($extralarge, 'r+'))){
                 File::delete($extralarge);
             }
             // large images
             if(Storage::disk($disk)
-                ->put('uploads/designs/large/'.$filename, fopen($large, 'r+'))){
+                ->put('uploads/large/'.$filename, fopen($large, 'r+'))){
                     File::delete($large);
                 }
 
             // thumbnail images
             if(Storage::disk($disk)
-                ->put('uploads/designs/thumbnail/'.$filename, fopen($thumbnail, 'r+'))){
+                ->put('uploads/thumbnail/'.$filename, fopen($thumbnail, 'r+'))){
                     File::delete($thumbnail);
                  
                 }
             
             // minithumbnail images
             if(Storage::disk($disk)
-                ->put('uploads/designs/minithumbnail/'.$filename, fopen($minithumbnail, 'r+'))){
+                ->put('uploads/minithumbnail/'.$filename, fopen($minithumbnail, 'r+'))){
                     File::delete($minithumbnail);
                  
                 }
