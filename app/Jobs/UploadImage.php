@@ -39,7 +39,7 @@ class UploadImage implements ShouldQueue
         
         $disk = $this->design->disk;
         $filename = $this->design->image;
-        $original_file = storage_path() . '/uploads/designs/original/'. $filename;
+        $original_file = storage_path() . '/uploads/original/'. $filename;
         \Log::error("coucou upload image");
         try{
              // create the Extra Large Image and save to tmp disk
@@ -47,28 +47,28 @@ class UploadImage implements ShouldQueue
              ->resize(2560, null, function($constraint){
                  $constraint->aspectRatio();
              })
-             ->save($extralarge = storage_path('uploads/designs/extralarge/'. $filename));
+             ->save($extralarge = storage_path('uploads/extralarge/'. $filename));
 
             // create the Large Image and save to tmp disk
             Image::make($original_file)
                 ->resize(1920, null, function($constraint){
                     $constraint->aspectRatio();
                 })
-                ->save($large = storage_path('uploads/designs/large/'. $filename));
+                ->save($large = storage_path('uploads/large/'. $filename));
 
             // Create the thumbnail image
             Image::make($original_file)
                 ->resize(250, null, function($constraint){
                     $constraint->aspectRatio();
                 })
-                ->save($thumbnail = storage_path('uploads/designs/thumbnail/'. $filename));
+                ->save($thumbnail = storage_path('uploads/thumbnail/'. $filename));
 
             // Create the mini thumbnail image
             Image::make($original_file)
                 ->resize(100, null, function($constraint){
                     $constraint->aspectRatio();
                 })
-                ->save($minithumbnail = storage_path('uploads/designs/minithumbnail/'. $filename));
+                ->save($minithumbnail = storage_path('uploads/minithumbnail/'. $filename));
                 
             // store images to permanent disk
             // original image
