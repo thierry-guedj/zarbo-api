@@ -49,7 +49,7 @@ Route::group(['middleware'=>['auth:api']], function(){
     Route::delete('designs/{id}', 'Designs\DesignController@destroy');
 
     // Users
-    Route::post('user', 'User\UserAvatarController@upload');
+    Route::put('user/{id}', 'User\AvatarController@upload');
 
     // Likes and Unlikes
     Route::post('designs/{id}/like', 'Designs\DesignController@like');
