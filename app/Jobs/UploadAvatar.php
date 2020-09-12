@@ -39,7 +39,7 @@ class UploadImage implements ShouldQueue
         
         $disk = $this->user->disk;
         $filename = $this->user->image;
-        $original_file = storage_path() . '/uploads/avatar/original/'. $filename;
+        $original_file = storage_path() . '/uploads/avatars/original/'. $filename;
         \Log::error("coucou upload image");
         try{
              // create the Large Image and save to tmp disk
