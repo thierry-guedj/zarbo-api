@@ -28,7 +28,8 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'username',
         'formatted_adress',
         'avalaible_to_hire',
-        'location'
+        'location',
+        'disk'
     ];
 
     protected $spatialFields = [
@@ -129,6 +130,23 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
                         ->whereHas('participants', function($query)  use ($user_id){
                             $query->where('user_id', $user_id);})->first();
         return $chat;
+    }
+
+    public function getImagesAttribute()
+    {
+        
+        return [
+            'small' => $this->getImagePath('small'),
+            'medium' => $this->getImagePath('medium'),
+            'large' => $this->getImagePath('large'),
+            'original' => $this->getImagePath('original'),
+        ];
+    }
+
+    protected function getImagePath($size)
+    {
+        return Storage::disk($this->disk)
+                        ->url("uploads/avatars/{$size}/".$this->image);
     }
 
      /**

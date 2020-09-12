@@ -48,7 +48,9 @@ Route::group(['middleware'=>['auth:api']], function(){
     Route::get('designs/{id}/uploadIsSuccessful', 'Designs\DesignController@uploadIsSuccessful');
     Route::delete('designs/{id}', 'Designs\DesignController@destroy');
 
-    
+    // Users
+    Route::post('user', 'User\UserAvatarController@upload');
+
     // Likes and Unlikes
     Route::post('designs/{id}/like', 'Designs\DesignController@like');
     Route::get('designs/{id}/liked', 'Designs\DesignController@checkIfUserHasLiked');
