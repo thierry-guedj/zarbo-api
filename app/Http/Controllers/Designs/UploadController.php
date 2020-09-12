@@ -34,7 +34,7 @@ class UploadController extends Controller
         $filename = time()."_". preg_replace('/\s+/', '_', strtolower($image->getClientOriginalName()));
         
         // move the image to the temporary location (tmp)
-        $tmp = $image->storeAs('uploads/original', $filename, 'tmp');
+        $tmp = $image->storeAs('uploads/designs/original', $filename, 'tmp');
 
         // create the database record for the design
         // $design = auth()->user()->designs()->create([
@@ -47,7 +47,7 @@ class UploadController extends Controller
             'image' => $filename,
             'title' =>$request->title,
             'description' =>$request->description,
-            'tags' =>$request->tags,
+            // 'tags' =>$request->tags,
             'is_live' =>$request->is_live,
             'slug' =>$request->slug,
             'disk' => config('site.upload_disk')
