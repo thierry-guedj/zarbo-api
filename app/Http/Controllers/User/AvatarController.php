@@ -20,6 +20,7 @@ class AvatarController extends Controller
     {
         // validate the request
         \Log::error($request->get('slim_output_0'));
+        $request->replace($request->all()); 
         $this->validate($request, [
             'slim_output_0' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:2000']
         ]); 
