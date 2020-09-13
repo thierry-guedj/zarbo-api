@@ -168,7 +168,10 @@ class DesignController extends Controller
     public function getForUserWhereNotIn($userId, $designId)
     {
         $designs = $this->designs
-                        ->withCriteria([new isLive()])
+                        ->withCriteria([
+                            new isLive(), 
+                            new LatestFirst()
+                            ])
                         ->findWhere('user_id', $userId)
                         ->whereNotIn('id', $designId)->paginate(6);
         return DesignResource::collection($designs);
