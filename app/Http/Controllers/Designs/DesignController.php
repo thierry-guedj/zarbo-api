@@ -154,7 +154,7 @@ class DesignController extends Controller
     public function getForUser($userId)
     {
         $designs = $this->designs
-                        //->withCriteria([new isLive()])
+                        ->withCriteria([new LatestFirst()])
                         ->findWhere('user_id', $userId);
         return DesignResource::collection($designs);
     }
