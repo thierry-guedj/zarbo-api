@@ -73,19 +73,19 @@ class UploadAvatar implements ShouldQueue
 
                 // extralarge images
             if(Storage::disk($disk)
-                ->put('uploads/avatars/large/'.$filename, fopen($extralarge, 'r+'))){
-                File::delete($extralarge);
+                ->put('uploads/avatars/large/'.$filename, fopen($large, 'r+'))){
+                File::delete($large);
             }
             // large images
             if(Storage::disk($disk)
-                ->put('uploads/avatars/medium/'.$filename, fopen($large, 'r+'))){
-                    File::delete($large);
+                ->put('uploads/avatars/medium/'.$filename, fopen($medium, 'r+'))){
+                    File::delete($medium);
                 }
 
             // thumbnail images
             if(Storage::disk($disk)
-                ->put('uploads/avatars/small/'.$filename, fopen($thumbnail, 'r+'))){
-                    File::delete($thumbnail);
+                ->put('uploads/avatars/small/'.$filename, fopen($small, 'r+'))){
+                    File::delete($small);
                  
                 }
             
