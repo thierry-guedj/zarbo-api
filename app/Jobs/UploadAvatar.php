@@ -38,7 +38,7 @@ class UploadAvatar implements ShouldQueue
     {
         
         $disk = $this->user->disk;
-        $filename = $this->user->image;
+        $filename = $this->user->avatar;
         $original_file = storage_path() . '/uploads/avatars/original/'. $filename;
         \Log::error("coucou upload image");
         try{
