@@ -20,7 +20,7 @@ class AvatarController extends Controller
     {
         // validate the request
         \Log::error($request->get('slim_output_0'));
-        $request->replace($request->all()); 
+        /* $request->replace($request->all());  */
         $this->validate($request, [
             'slim_output_0' => ['required', 'mimes:jpg,jpeg,gif,bmp,png', 'max:2000']
         ]); 
@@ -42,9 +42,9 @@ class AvatarController extends Controller
         //     'image' => $filename,
         //     'disk' => config('site.upload_disk')
         // ]);
-
+        \Log::error($filename);
         $user = $this->users->update(auth()->id(), [
-            'image' => $filename,
+            'avatar' => $filename,
             'name' => $request->name,
             'tagline' => $request->tagline,
             'about' => $request->about,

@@ -32,28 +32,30 @@ class UserController extends Controller
         $designers = $this->users->search($request);
         return UserResource::collection($designers);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $id )
     {
         $user = $this->users->find($id);
         $this->authorize('update', $user);
 
-      /*   $this->validate($request, [
-            'title' => ['required', 'unique:users,title,'. $id],
+        $this->validate($request, [
+            'name' => ['required', 'unique:users,name,'. $id],
+            /* 'title' => ['required', 'unique:users,title,'. $id],
             'description' => ['required', 'string', 'min:6', 'max:450'],
             'tags' => ['required'],
             'title' => ['required'],
             'description' => ['string', 'min:6', 'max:450'],            
-            'team' => ['required_if:assign_to_team,true']
-        ]); */
+            'team' => ['required_if:assign_to_team,true'] */
+        ]);
 
         $user = $this->users->update($id, [
+            'avatar' => $request->avatar,
             'name' => $request->name,
             'tagline' => $request->tagline,
             'username' => $request->username,
             'about' => $request->about,
         ]);
 
-        return new DesignResource($design);
+        return new UserResource($user);
     }
     public function findByUserName($username)
     {
