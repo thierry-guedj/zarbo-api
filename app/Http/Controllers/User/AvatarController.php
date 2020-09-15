@@ -45,9 +45,9 @@ class AvatarController extends Controller
         \Log::error($filename);
         $user = $this->users->update(auth()->id(), [
             'avatar' => $filename,
-            'name' => $request->name,
+            /* 'name' => $request->name,
             'tagline' => $request->tagline,
-            'about' => $request->about,
+            'about' => $request->about, */
             'disk' => config('site.upload_disk')
         ]);
         \Log::error($user);
