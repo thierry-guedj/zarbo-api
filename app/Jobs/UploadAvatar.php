@@ -51,7 +51,7 @@ class UploadAvatar implements ShouldQueue
 
             // create the medium Image and save to tmp disk
             Image::make($original_file)
-                ->resize(40, null, function($constraint){
+                ->resize(60, null, function($constraint){
                     $constraint->aspectRatio();
                 })
                 ->save($medium = storage_path('uploads/avatars/medium/'. $filename));
