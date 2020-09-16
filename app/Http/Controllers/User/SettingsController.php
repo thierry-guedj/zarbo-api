@@ -32,7 +32,7 @@ class SettingsController extends Controller
             'location.longitude' => ['required', 'numeric', 'min:-180', 'max:180'], */
         ]);
 
-        $location = new Point($request->location['latitude'], $request->location['longitude']);
+        // $location = new Point($request->location['latitude'], $request->location['longitude']);
 
         $user = $this->users->update(auth()->id(), [
             'name' => $request->name,
