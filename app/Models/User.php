@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
@@ -148,7 +149,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     protected function getImagePath($size)
     {
         return Storage::disk($this->disk)
-                        ->url("uploads/avatars/{$size}/".$this->image);
+                        ->url("uploads/avatars/{$size}/".$this->avatar);
     }
 
      /**
