@@ -189,9 +189,9 @@ class DesignController extends Controller
     public function uploadIsSuccessful($designId)
     {       
         while($this->design->uploadIsSuccessful($designId) == false) {
-            return $this->design->uploadIsSuccessful($designId);
+            sleep(1)
         }
-        $this->design->uploadIsSuccessful($designId)
+        return true;
     }
 
     public function searchByTagName($tag)
