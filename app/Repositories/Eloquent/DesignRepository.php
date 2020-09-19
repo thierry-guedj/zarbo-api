@@ -55,7 +55,7 @@ class DesignRepository extends BaseRepository implements IDesign
 
     public function uploadIsSuccessful($id)
     {
-        $design = $this->model->findOrFail($id);
+        $design = $this->model->find($id);
         return $design->upload_successful;
     }
  
