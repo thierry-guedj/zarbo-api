@@ -81,7 +81,7 @@ class DesignController extends Controller
         $this->authorize('update', $design);
 
         $design = $this->designs->update($id, [
-            'is_live' => ! $design->upload_successful ? 0 : $request->isLive
+            'is_live' => $request->isLive
         ]);
 
         return new DesignResource($design);
