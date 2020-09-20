@@ -189,8 +189,10 @@ class DesignController extends Controller
     public function uploadIsSuccessful($designId)
     {       
         $design = $this->designs->find($designId);
-        while($design->upload_successful == false) {
+        $time=0;
+        while($design->upload_successful == false && $time < 10) {
             $design = $this->designs->find($designId);
+            $time++;
         }
         return true;
     }
