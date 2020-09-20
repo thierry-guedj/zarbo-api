@@ -188,6 +188,7 @@ class DesignController extends Controller
 
     public function uploadIsSuccessful($designId)
     {       
+        $design = $this->designs->find($designId);
         while($this->design->uploadIsSuccessful($designId) == false) {
             sleep(1);
         }
