@@ -50,6 +50,7 @@ Route::group(['middleware'=>['auth:api']], function(){
 
     // Users
     Route::put('user/{id}', 'User\AvatarController@upload');
+    Route::put('user/{id}/uploadIsSuccessful', 'User\UserController@uploadIsSuccessful');
 
     // Likes and Unlikes
     Route::post('designs/{id}/like', 'Designs\DesignController@like');
