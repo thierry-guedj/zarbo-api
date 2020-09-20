@@ -225,7 +225,7 @@ class DesignController extends Controller
             new LatestFirst(),
             new IsLive(),
             new EagerLoad(['user', 'comments'])
-        ])->paginate(21);
+        ])->paginate(18);
         return DesignResource::collection($designs);
 
     }
