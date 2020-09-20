@@ -67,4 +67,14 @@ class UserController extends Controller
         $user = $this->users->findWhereFirst('id', $id);
         return new UserResource($user);
     }
+    public function uploadIsSuccessful($userId)
+    {       
+        $user = $this->users->findById($userId);
+        $time=0;
+        while($user->upload_successful == false && $time < 50000) {
+            $user = $this->users->findById($userId);
+            $time++;
+        }
+        return true;
+    }
 }
