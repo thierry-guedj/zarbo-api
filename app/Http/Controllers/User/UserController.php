@@ -69,10 +69,10 @@ class UserController extends Controller
     }
     public function uploadIsSuccessful($userId)
     {       
-        $user = $this->users->findById($userId);
+        $user = $this->users->findWhereFirst('id', $userId);
         $time=0;
         while($user->upload_successful == false && $time < 50000) {
-            $user = $this->users->findById($userId);
+            $user = $this->users->findWhereFirst('id', $userId);
             $time++;
         }
         return true;
