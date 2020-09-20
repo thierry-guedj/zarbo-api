@@ -190,7 +190,7 @@ class DesignController extends Controller
     {       
         $design = $this->designs->find($designId);
         while($design->upload_successful == false) {
-            sleep(1);
+            $design = $this->designs->find($designId);
         }
         return true;
     }
