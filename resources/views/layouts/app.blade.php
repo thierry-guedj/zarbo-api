@@ -23,7 +23,6 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-            <img src="{{$message->embed(public_path().'/images/logo192x192.png')}}" style="padding:0px; margin:0px" />
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
