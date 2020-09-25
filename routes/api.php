@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Public routes
+Route::get('setLang/{locale}', 'User\MeController@setLang');
 Route::get('me', 'User\MeController@getMe');
 
 // Get designs

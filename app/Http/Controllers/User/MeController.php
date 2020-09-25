@@ -20,4 +20,8 @@ class MeController extends Controller
 
         return response()->json(null, 401);
     }
+    public function setLang($locale)
+    {
+        App::setLocale($locale);
+    }
 }
