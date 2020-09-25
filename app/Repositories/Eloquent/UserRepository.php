@@ -54,7 +54,6 @@ class UserRepository extends BaseRepository implements IUser
         if($request->q){
             $query->where(function($q) use ($request){
                 $q->where('name', 'like', '%'.$request->q.'%')
-                    ->orWhere('username', 'like', '%'.$request->q.'%')
                     ->orWhere('tagline', 'like', '%'.$request->q.'%');
             });
         }

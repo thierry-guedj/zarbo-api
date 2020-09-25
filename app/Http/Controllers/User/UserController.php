@@ -51,15 +51,9 @@ class UserController extends Controller
             'avatar' => $request->avatar,
             'name' => $request->name,
             'tagline' => $request->tagline,
-            'username' => $request->username,
             'about' => $request->about,
         ]);
 
-        return new UserResource($user);
-    }
-    public function findByUserName($username)
-    {
-        $user = $this->users->findWhereFirst('username', $username);
         return new UserResource($user);
     }
     public function findById($id)
