@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 // Route::get('setLang/{locale}', 'User\MeController@setLang');
-/* Route::get('setLang/{locale}', function ($locale) {
+Route::get('setLang/{locale}', function ($locale) {
     if (! in_array($locale, ['en', 'fr'])) {
         abort(400);
     }
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
     App::setLocale($locale);
 
     //
-}); */
+});
 Route::get('me', 'User\MeController@getMe');
 
 // Get designs
