@@ -7,7 +7,7 @@
 <img src="<?php echo $message->embed($pathToFile); ?>">
 {{ $slot }}
 @endif
-<img src="{{ $message->embed(public_path().'/images/logo192x192.png') }}" style="padding:0px; margin:0px" />
+<img src="https://zarbo.fr/logo192x192.png') }}" style="padding:0px; margin:0px" />
 </a>
 </td>
 </tr>
