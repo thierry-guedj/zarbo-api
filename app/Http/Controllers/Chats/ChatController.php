@@ -74,7 +74,7 @@ class ChatController extends Controller
     {
         $chat = $this->chats->find($id);
         $chat->markAsReadForUser(auth()->id());
-        return response()->json(['message' => 'Successful'], 200);
+        return response()->json(['message' => trans('messages.successful')], 200);
     }
 
     // Destroy message

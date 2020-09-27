@@ -102,7 +102,7 @@ class DesignController extends Controller
 
         $this->designs->delete($id);
 
-        return response()->json(['message' => 'Record deleted'], 200);
+        return response()->json(['message' => trans('messages.recordDeleted')], 200);
 
     }
 
@@ -110,7 +110,7 @@ class DesignController extends Controller
     {
         $total = $this->designs->like($id);
         return response()->json([
-            'message' => 'Successful',
+            'message' => trans('messages.successful'),
             'total' => $total
         ], 200);
     }

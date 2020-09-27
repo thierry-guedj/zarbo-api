@@ -60,12 +60,12 @@ class LoginController extends Controller
 
         if($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()){
             return response()->json(["errors" => [
-                "emailNotVerified" => "Your email address is not verified."
+                "emailNotVerified" =>  trans('messages.emailNotVerified')
             ]], 422);
         }
 
         throw ValidationException::withMessages([
-            $this->username() => trans("Invalid credentials")
+            $this->username() => trans('messages.invalidCredentials')
         ]);
     }
 
@@ -73,7 +73,7 @@ class LoginController extends Controller
    {
        $this->guard()->logout();
        
-       return response()->json(["message" => "Logged out succesfully"]);
+       return response()->json(["message" => trans('messages.loggedOut')]);
    }
    
 }
