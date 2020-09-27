@@ -60,7 +60,7 @@ class LoginController extends Controller
 
         if($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()){
             return response()->json(["errors" => [
-                "emailNotVerified" => "You need to verify your email account"
+                "emailNotVerified" => "Your email address is not verified."
             ]], 422);
         }
 
