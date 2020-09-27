@@ -52,7 +52,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => __('Successfully logged out')]);
+        return response()->json(['message' => trans('Successfully logged out')]);
     }
 
     /**
