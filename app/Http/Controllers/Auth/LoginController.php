@@ -65,7 +65,7 @@ class LoginController extends Controller
         }
 
         throw ValidationException::withMessages([
-            $this->username() => "Invalid credentials"
+            $this->username() => __("Invalid credentials")
         ]);
     }
 
