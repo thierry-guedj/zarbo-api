@@ -194,7 +194,7 @@ class DesignController extends Controller
             $design = $this->designs->find($designId);
             $time++;
         }
-        return true;
+        return new DesignResource($design);
     }
 
     public function searchByTagName($tag)
