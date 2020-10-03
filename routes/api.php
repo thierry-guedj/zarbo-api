@@ -14,11 +14,10 @@ Route::get('setLang/{locale}', function ($locale) {
 
     //
 });
-/* Route::get('setLang/{locale}', function () {
-})->middleware('Localization'); */
+
 
 // Post form data
-Route::post('/contact', 'ContactUsFormController@ContactUsForm');
+Route::post('contact', 'ContactUsFormController@ContactUsForm');
 
 Route::get('me', 'User\MeController@getMe');
 
