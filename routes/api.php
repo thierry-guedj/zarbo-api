@@ -17,7 +17,7 @@ Route::get('setLang/{locale}', function ($locale) {
 
 
 // Post form data
-Route::get('contact/{name}/{email}/{subject}/{message}', 'ContactUsFormController@ContactUsForm');
+Route::any('contact/{name}/{email}/{subject}/{message}', 'ContactUsFormController@ContactUsForm');
 
 Route::get('me', 'User\MeController@getMe');
 
