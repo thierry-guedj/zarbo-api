@@ -23,7 +23,7 @@ class ContactUsFormController extends Controller {
         Contact::create($request->all());
 
         //  Send mail to admin
-        \Mail::send('mail', array(
+        \Mail::send('contact', array(
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'subject' => $request->get('subject'),
