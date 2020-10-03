@@ -10,7 +10,7 @@ class ContactUsFormController extends Controller {
 
     // Store Contact Form data
     public function ContactUsForm(Request $request) {
-        \Log::error("Sending contact form");
+
         // Form validation
         $this->validate($request, [
             'name' => 'required',
