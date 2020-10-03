@@ -10,6 +10,7 @@ use App\Repositories\Contracts\IUser;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -49,7 +50,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'invitation_code' => ['required', 'in: env(`INVITATION_CODE`)']
+            'invitation_code' => ['required', Rule::in([env('INVITATION_CODE')]),
         ]);
     }
 
