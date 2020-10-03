@@ -18,10 +18,7 @@ Route::get('setLang/{locale}', function ($locale) {
 })->middleware('Localization'); */
 
 // Post form data
-Route::post('/contact', [
-    'uses' => 'ContactUsFormController@ContactUsForm',
-    'as' => 'contact.store'
-]);
+Route::post('/contact', 'ContactUsFormController@ContactUsForm');
 
 Route::get('me', 'User\MeController@getMe');
 
