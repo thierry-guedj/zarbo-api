@@ -10,4 +10,4 @@
 
 ## Build Setup
 
-For detailed explanation on how things work, check out [Laravel documentation](https://laravel.com/docs).
+For detailed explanation on how things work,  check out [Laravel documentation](https://laravel.com/docs).
