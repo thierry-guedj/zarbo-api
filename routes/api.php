@@ -15,7 +15,8 @@ Route::get('setLang/{locale}', function ($locale) {
     //
 });
 
-
+ // Post form data
+ Route::post('contact', 'ContactUsFormController@ContactUsForm');
 
 
 Route::get('me', 'User\MeController@getMe');
@@ -107,6 +108,5 @@ Route::group(['middleware' => ['guest:api']], function(){
     Route::post('login', 'Auth\LoginController@login');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');   
-    // Post form data
-    Route::post('contact', 'ContactUsFormController@ContactUsForm'); 
+    
 });
