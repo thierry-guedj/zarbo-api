@@ -33,7 +33,8 @@ class ContactUsFormController extends Controller {
             $message->to('info@zarbo.fr', 'Admin')->subject($request->get('subject'));
         });
 
-        return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
+       // return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
+       return response()->json(['message' => 'Successfully sent']);
     }
 
 }
