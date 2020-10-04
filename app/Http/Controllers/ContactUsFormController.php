@@ -30,7 +30,7 @@ class ContactUsFormController extends Controller {
             'user_query' => $request->get('message'),
         ), function($message) use ($request){
             $message->from($request->email);
-            $message->to(env('MAIL_TEST_USERNAME'), 'Admin')->subject($request->get('subject'));
+            $message->to(env('MAIL_USERNAME'), 'Admin')->subject($request->get('subject'));
         });
 
        // return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
