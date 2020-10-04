@@ -39,7 +39,7 @@ class SettingsController extends Controller
             /* 'formatted_address' => $request->formatted_address,
             'location' => $location,
             'available_to_hire' => $request->available_to_hire, */
-            'about' => $request->about,
+            'about' => nl2br(htmlentities(stripslashes($request->about))),
             'tagline' => $request->tagline,
         ]);
 
