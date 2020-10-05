@@ -69,6 +69,6 @@ class UserController extends Controller
             $user = $this->users->findWhereFirst('id', $userId);
             $time++;
         }
-        return new UserResource($user);
+        return true;
     }
 }
