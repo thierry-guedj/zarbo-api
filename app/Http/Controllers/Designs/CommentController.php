@@ -57,6 +57,6 @@ class CommentController extends Controller
 
         $this->comments->delete($id);
 
-        return response()->json(["message" => trans(messages.itemDeleted')]);
+        return response()->json(["message" => trans(messages.itemDeleted)]);
     }
 }
