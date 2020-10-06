@@ -222,12 +222,11 @@ class DesignController extends Controller
     public function getTags() 
     { 
        // Instantiate the service (can also be done via dependency injection)
-$tagService = app(\Cviebrock\EloquentTaggable\Services\TagService::class);
+        $tagService = app(\Cviebrock\EloquentTaggable\Services\TagService::class);
 
-// Return a collection of all the Tag models used by all models:
+        // Return a collection of all the Tag models used by all models:
 
-$tagService->getAllTags();
-        return $tagService;
+        return $tagService->getAllTags();
     }
     public function lastDesigns()
     {
