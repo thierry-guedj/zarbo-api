@@ -221,11 +221,13 @@ class DesignController extends Controller
     }
     public function getTags() 
     { 
-        // You can use the scope that comes with the EloquentTaggable package:
-        $tags = $this->designs->allTagModels();
+       // Instantiate the service (can also be done via dependency injection)
+$tagService = app(\Cviebrock\EloquentTaggable\Services\TagService::class);
 
-        // Then return the results of the search
-        return $tags;
+// Return a collection of all the Tag models used by all models:
+
+$tagService->getAllTags();
+        return $tagService;
     }
     public function lastDesigns()
     {
