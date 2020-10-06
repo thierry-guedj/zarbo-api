@@ -222,7 +222,7 @@ class DesignController extends Controller
     public function getTags() 
     { 
         // You can use the scope that comes with the EloquentTaggable package:
-        $tags = $this->model->getAllTags()->get();
+        $tags = $this->designs->getTags()->get();
 
         // Then return the results of the search
         return $tags;
