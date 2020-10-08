@@ -71,7 +71,8 @@ class DesignController extends Controller
         ]);
 
         // Apply tags
-        $this->designs->applyTags($id, $request->tags);
+        $tags = explode(",", $request->tags);
+        $this->designs->applyTags($id, $tags);
 
         return new DesignResource($design);
     }
