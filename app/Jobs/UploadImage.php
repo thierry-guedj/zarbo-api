@@ -46,6 +46,7 @@ class UploadImage implements ShouldQueue
              Image::make($original_file)
              ->resize(2560, null, function($constraint){
                  $constraint->aspectRatio();
+                 $constraint->upsize();
              })
              ->save($extralarge = storage_path('uploads/designs/extralarge/'. $filename));
 
@@ -53,6 +54,7 @@ class UploadImage implements ShouldQueue
             Image::make($original_file)
                 ->resize(1920, null, function($constraint){
                     $constraint->aspectRatio();
+                    $constraint->upsize();
                 })
                 ->save($large = storage_path('uploads/designs/large/'. $filename));
 
@@ -60,6 +62,7 @@ class UploadImage implements ShouldQueue
             Image::make($original_file)
                 ->resize(250, null, function($constraint){
                     $constraint->aspectRatio();
+                    $constraint->upsize();
                 })
                 ->save($thumbnail = storage_path('uploads/designs/thumbnail/'. $filename));
 
@@ -67,6 +70,7 @@ class UploadImage implements ShouldQueue
             Image::make($original_file)
                 ->resize(100, null, function($constraint){
                     $constraint->aspectRatio();
+                    $constraint->upsize();
                 })
                 ->save($minithumbnail = storage_path('uploads/designs/minithumbnail/'. $filename));
                 
