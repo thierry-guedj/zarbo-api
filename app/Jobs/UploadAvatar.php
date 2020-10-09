@@ -58,7 +58,7 @@ class UploadAvatar implements ShouldQueue
 
             // Create the small image
             Image::make($original_file)
-                ->resize(40, null, function($constraint){
+                ->resize(50, null, function($constraint){
                     $constraint->aspectRatio();
                 })
                 ->save($small = storage_path('uploads/avatars/small/'. $filename));
