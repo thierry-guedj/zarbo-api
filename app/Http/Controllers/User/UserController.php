@@ -58,7 +58,9 @@ class UserController extends Controller
     }
     public function findById($id)
     {
-        $user = $this->users->findWhereFirst('id', $id);
+        $user = $this->users->withCriteria([
+            new EagerLoad(['designs'])
+        ])->findWhereFirst('id', $id);
         return new UserResource($user);
     }
     public function uploadIsSuccessful($userId)
