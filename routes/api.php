@@ -32,6 +32,8 @@ Route::get('user/{username}', 'User\UserController@findByUsername');
 Route::get('user/{id}/findById', 'User\UserController@findById');
 Route::get('users/{id}/designs', 'Designs\DesignController@getForUser');
 
+Route::get('users/last', 'User\UserController@lastUsers');
+
 // Get Team
 Route::get('teams/slug/{slug}', 'Teams\TeamsController@findBySlug');
 Route::get('teams/{id}/designs', 'Designs\DesignController@getForTeam');
@@ -48,7 +50,7 @@ Route::get('search/designs/{user}/user', 'Designs\DesignController@getForUserFro
 Route::get('search/designs/{user}/usermore/{id}', 'Designs\DesignController@getForUserWhereNotIn');
 Route::get('/designs/{id}/totalLikes', 'Designs\DesignController@totalLikes');
 
-// Get Likes 
+
 Route::get('search/designs/last', 'Designs\DesignController@lastDesigns');
 
 // Route group for authenticated users only
