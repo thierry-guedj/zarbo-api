@@ -80,7 +80,7 @@ class UserController extends Controller
     {
         $users = $this->users->withCriteria([
             new LatestFirst(),
-        ])->paginate(12);
+        ])->paginate(15);
         return UserResource::collection($users);
 
     }
