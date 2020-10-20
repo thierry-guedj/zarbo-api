@@ -93,8 +93,8 @@ class DesignRepository extends BaseRepository implements IDesign
         }
 
          // Returns only designs assigned to user id
-         if($request->userId){
-            $query->where('user_id', $request->userId);
+         if($request->idUser){
+            $query->where('user_id', $request->idUser);
         }
  // Returns only designs whereNotIn id
  if($request->whereNotIn){
