@@ -13,6 +13,7 @@ return [
     'itemDeleted' => 'Element supprimé',
     'recordDeleted' => 'Enregistrement supprimé',
     'passwordUpdated' => 'Votre mot de passe a été modifié',
+    "Verify Email Address" => "Vérification de l'adresse email",
 
     'failed'   => 'Ces identifiants ne correspondent pas à nos enregistrements',
     'throttle' => 'Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes.',
