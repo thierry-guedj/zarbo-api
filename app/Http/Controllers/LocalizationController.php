@@ -17,6 +17,7 @@ class LocalizationController extends Controller {
 
     public function setLang($lang){
         \Session::put('lang', $lang);
+        \Log::error($locale);
         return redirect()->back();
     }
 }
