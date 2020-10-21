@@ -175,5 +175,6 @@ return [
         'time'                  => 'heure',
         'available'             => 'disponible',
         'size'                  => 'taille',
+        'invitation code'       => 'code invitation',
     ],
 ];
