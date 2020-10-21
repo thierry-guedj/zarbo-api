@@ -10,10 +10,10 @@ class LocalizationController extends Controller {
         session()->put('locale', $locale);
         return redirect()->back();
     }
-{
+
     public function getLang() {
         return \App::getLocale();
-    });
+    }
 
     public function setLang($lang){
         \Session::put('lang', $lang);
