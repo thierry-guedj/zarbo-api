@@ -5,15 +5,19 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes
 // Route::get('setLang/{locale}', 'User\MeController@setLang');
-Route::get('setLang/{locale}', function ($locale) {
+/* Route::get('setLang/{locale}', function ($locale) {
     if (! in_array($locale, ['en', 'fr'])) {
         abort(400);
     }
 
     App::setLocale($locale);
 
-    //
-});
+}); */
+// Route qui permet de connaître la langue active
+Route::get('locale', 'LocalizationController@getLang')->name('getlang');
+
+// Route qui permet de modifier la langue
+Route::get('locale/{lang}', 'LocalizationController@setLang')->name('setlang');
 
  // Post form data
  Route::post('contact', 'ContactUsFormController@ContactUsForm');
