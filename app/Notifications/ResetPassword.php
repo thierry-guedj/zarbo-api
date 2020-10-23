@@ -20,9 +20,9 @@ class ResetPassword extends Notification
                     '?email='.urlencode($notifiable->email);
 
         return (new MailMessage)
-                    ->line(Lang::getFromJson('You are receiving this email because we received a password reset request for your account.'))
-                    ->action(Lang::getFromJson('Reset Password'), $url)
-                    ->line(Lang::getFromJson('If you did not request a password reset, no further action is required.'));
+                    ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
+                    ->action(Lang::get('Reset Password'), $url)
+                    ->line(Lang::get('If you did not request a password reset, no further action is required.'));
     }
 
 }

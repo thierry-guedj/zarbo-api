@@ -69,7 +69,7 @@
     "Whoops!": "Ой!",
     "Whoops, something went wrong on our servers.": "Ой, щось пішло не так на наших серверах.",
     "You are logged in!": "Ви увійшли в систему",
-    "You are receiving this email because we received a password reset request for your account.": "Ви отримали цей електронний лист, оскільки ми отримали запит на скидання паролю для вашого облікового запису.",
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
     "You may not delete your personal team.": "You may not delete your personal team.",
     "You may not leave a team that you created.": "You may not leave a team that you created.",
     "Your email address is not verified.": "Ваша електронна адреса не підтверджена."
