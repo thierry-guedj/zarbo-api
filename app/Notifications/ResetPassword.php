@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Auth\Notifications\ResetPassword as Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
 
 
 class ResetPassword extends Notification
@@ -19,9 +20,9 @@ class ResetPassword extends Notification
                     '?email='.urlencode($notifiable->email);
 
         return (new MailMessage)
-                    ->line('You are receiving this email because we received a password reset request for your account.')
-                    ->action('Reset Password', $url)
-                    ->line('If you did not request a password reset, no further action is required.');
+                    ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
+                    ->action(Lang::get('Reset Password'), $url)
+                    ->line(Lang::get('If you did not request a password reset, no further action is required.'));
     }
 
 }
