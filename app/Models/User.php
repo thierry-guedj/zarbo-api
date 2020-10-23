@@ -67,7 +67,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmail)->locale('fr');
+        $this->notify((new VerifyEmail)->locale('fr'));
     }
 
 
