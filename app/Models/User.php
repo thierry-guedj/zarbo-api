@@ -10,8 +10,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Translation\HasLocalePreference;
 
-class User extends Authenticatable implements JWTSubject, MustVerifyEmail
+class User extends Authenticatable implements JWTSubject, MustVerifyEmail, HasLocalePreference
 {
     use Notifiable, SpatialTrait;
 
@@ -33,7 +34,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'upload_successful',
         'disk'
     ];
-
+    public function preferredLocale()
+    {
+        return $this->locale;
+    }
     protected $spatialFields = [
         'location',
     ];
@@ -69,7 +73,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         // $this->notify((new VerifyEmail)->locale('fr'));
         $this->locale = 'fr';
-  $this->notify((new VerifyEmail));
+  $this->notify(new VerifyEmail);
     }
 
 
