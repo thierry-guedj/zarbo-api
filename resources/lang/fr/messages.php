@@ -8,7 +8,7 @@ return [
     'emailAlreadyVerified' => 'Adresse email déjà vérifiée',
     'emailSuccessVerified' => 'Addresse email vérifiée avec succès',
     'noUser' => 'Aucun utilisateur ne correspond à cette adresse email',
-    'verificationLnkResent' => 'Lien de vérification renvoyé',
+    'verificationLinkResent' => 'Lien de vérification renvoyé',
     'successful' => 'Succès',
     'itemDeleted' => 'Element supprimé',
     'recordDeleted' => 'Enregistrement supprimé',

@@ -61,7 +61,6 @@
     "Unauthorized": "Non autorisé",
     "Use a recovery code": "Use a recovery code",
     "Use an authentication code": "Use an authentication code",
-    "Verify Email Address": "Vérification de l'adresse email",
     "Verify Your Email Address": "Vérifiez votre adresse email",
     "We were unable to find a registered user with this email address.": "We were unable to find a registered user with this email address.",
     "We won't ask for your password again for a few hours.": "Nous ne vous demanderons plus votre mot de passe pour quelques heures",
@@ -73,5 +72,6 @@
     "You may not leave a team that you created.": "You may not leave a team that you created.",
     "Your email address is not verified.": "Votre adresse email n'a pas été vérifiée.",
     "Invalid credentials": "Vos identifiants de connexion sont invalides.",
-    "Successfully logged out": "Déconnexion réussie"
+    "Successfully logged out": "Déconnexion réussie",
+    "Verify Email Address": "Vérifiez votre adresse e-mail",
 }

@@ -74,7 +74,7 @@ class VerificationController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return response()->json(['status' => trans('messages.verificationLnkResent')]);
+        return response()->json(['status' => trans('messages.verificationLinkResent')]);
 
     }
 
