@@ -73,12 +73,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail, HasLo
     {
         // $this->notify((new VerifyEmail)->locale('fr'));
         $this->locale = 'fr';
-  $this->notify((new VerifyEmail)->locale('fr'));
+    $this->notify((new VerifyEmail)->locale('fr'));
     }
 
 
     public function sendPasswordResetNotification($token)
     {
+        $this->locale = 'fr';
         $this->notify((new ResetPassword($token))->locale('fr'));
     }
 
