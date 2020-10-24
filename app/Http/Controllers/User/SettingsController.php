@@ -33,7 +33,7 @@ class SettingsController extends Controller
         ]);
 
         // $location = new Point($request->location['latitude'], $request->location['longitude']);
-
+        \Log::error($request->about);
         $user = $this->users->update(auth()->id(), [
             'name' => $request->name,
             /* 'formatted_address' => $request->formatted_address,
