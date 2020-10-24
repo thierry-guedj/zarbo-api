@@ -32,7 +32,7 @@ class UserResource extends JsonResource
             ],
             'formatted_address' => $this->formatted_address,
             'tagline' => $this->tagline,
-            'about' => nl2br($this->about),
+            'about' => $this->about,
             'location' => $this->location,
             'available_to_hire' => $this->available_to_hire,
             
