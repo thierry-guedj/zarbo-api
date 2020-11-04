@@ -1,4 +1,4 @@
-<?phpnamespace App\Http\Middleware;
+<?phpnamespace \App\Http\Middleware;
 use Closure;
 
 class localization
