@@ -2,7 +2,7 @@
 namespace App\Http\Middleware;
 use Closure;
 
-class localization
+class Localization
 {
   /**
   * Handle an incoming request.
