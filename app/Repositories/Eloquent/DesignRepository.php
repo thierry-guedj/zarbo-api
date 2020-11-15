@@ -109,7 +109,7 @@ class DesignRepository extends BaseRepository implements IDesign
             $query->latest();
         }
 
-        return $query->with('user')->paginate(12, ['*'], 'page', $request->page);
+        return $query->with('user')->paginate($request->nbResults, ['*'], 'page', $request->page);
     }
 
     public function fetchByTagName($tag) 
