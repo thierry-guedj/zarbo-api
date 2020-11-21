@@ -103,7 +103,7 @@ class DesignRepository extends BaseRepository implements IDesign
         // Order the query by likes or latest first
         if($request->orderBy == 'likes'){
             $query->withCount('likes')   // likes_count
-                ->orderByDesc('likes_count');
+                ->orderByDesc('likes_count')->latest();
         } else 
         {
             $query->latest();
