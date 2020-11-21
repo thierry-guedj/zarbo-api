@@ -71,9 +71,9 @@ class DesignRepository extends BaseRepository implements IDesign
         }
 
         // Returns only designs assigned to teams
-        if($request->has_team){
+        /* if($request->has_team){
             $query->has('team');
-        }
+        } */
 
         // Search title and description for provided string
         if($request->q){
@@ -109,7 +109,7 @@ class DesignRepository extends BaseRepository implements IDesign
             $query->latest();
         }
 
-        return $query->with('user')->paginate($request->nbResults, ['*'], 'page', $request->page);
+        return $query->with('user')->paginate(12, ['*'], 'page', $request->page);
     }
 
     public function fetchByTagName($tag) 
